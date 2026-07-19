@@ -1,6 +1,6 @@
-# postgres_18.4_01
+# postgres_18_01
 
-Docker Compose setup for a local Postgres 18.4 container.
+Docker Compose setup for a local Postgres 18 container.
 
 ## Usage
 
