@@ -1,7 +1,7 @@
 services:
   postgres:
-    image: postgres:18.4
-    container_name: postgres_18.4_01
+    image: ${POSTGRES_CONTAINER_IMAGE}
+    container_name: postgres_18_01
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER_SU}         # Optional: The default superuser name is 'postgres'
