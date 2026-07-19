@@ -7,4 +7,6 @@
 !**/.env.example
 
 # Postgres container data directory (live DB files, not source)
-postgres/18/postgres_18.4_01/postgresql/
+# Ignore contents but keep the directory itself via .gitkeep
+postgres/18/postgres_18.4_01/postgresql/*
+!postgres/18/postgres_18.4_01/postgresql/.gitkeep
