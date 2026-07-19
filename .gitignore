@@ -1,0 +1,10 @@
+# Environment files (any directory, any depth)
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Postgres container data directory (live DB files, not source)
+postgres/18/postgres_18.4_01/postgresql/

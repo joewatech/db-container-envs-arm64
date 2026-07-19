@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:18.4
+    container_name: postgres_18.4_01
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER_SU}         # Optional: The default superuser name is 'postgres'
+      POSTGRES_PASSWORD: ${POSTGRES_USER_SU_PWD} # CHANGE THIS: Your superuser password
+      POSTGRES_DB: ${POSTGRES_DB}                # Optional: Automatically creates this database on startup
+    ports:
+      - ${POSTGRES_LOCAL_PORT}:5432
+    expose:
+      - 5432
+    volumes:
+      - ${POSTGRES_LOCAL_DATA_VOL}:/var/lib/postgresql
