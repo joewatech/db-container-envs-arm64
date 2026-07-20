@@ -10,3 +10,9 @@
 # Ignore contents but keep the directory itself via .gitkeep
 postgres/18/postgres_18_01/postgresql/*
 !postgres/18/postgres_18_01/postgresql/.gitkeep
+
+mysql/8.4/mysql_8.4_01/mysql/*
+!mysql/8.4/mysql_8.4_01/mysql/.gitkeep
+
+mysql/9.7/mysql_9.7_01/mysql/*
+!mysql/9.7/mysql_9.7_01/mysql/.gitkeep

@@ -1,0 +1,14 @@
+services:
+  db:
+    image: container-registry.oracle.com/mysql/community-server:8.4.10-aarch64
+    container_name: mysql_8.4_01
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PWD}
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - "${MYSQL_PORT}:3306"
+      - "${MYSQL_X_PORT}:33060"
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./config/my.cnf:/etc/my.cnf:ro
