@@ -11,6 +11,9 @@ TEMPFILE REUSE;
 
 ALTER PLUGGABLE DATABASE ORACLE_SAMPLE_PDB OPEN READ WRITE;
 
+-- Persist this PDB's open state so it comes back up READ WRITE automatically on future restarts.
+ALTER PLUGGABLE DATABASE ORACLE_SAMPLE_PDB SAVE STATE;
+
 -- Change session to Pluggable DataBase (PDB).
 ALTER SESSION SET container = ORACLE_SAMPLE_PDB;
 
