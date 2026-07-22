@@ -6,6 +6,9 @@
 **/.env.*
 !**/.env.example
 
+.DS_Store
+**/.DS_Store
+
 # Postgres container data directory (live DB files, not source)
 # Ignore contents but keep the directory itself via .gitkeep
 postgres/18/postgres_18_01/postgresql/*
@@ -17,11 +20,8 @@ mysql/8.4/mysql_8.4_01/mysql/*
 mysql/9.7/mysql_9.7_01/mysql/*
 !mysql/9.7/mysql_9.7_01/mysql/.gitkeep
 
-oracle/19c/oracle_db_19c_ent_01/oradata/*
-!oracle/19c/oracle_db_19c_ent_01/oradata/.gitkeep
+oracle/19c/ora_db_19c_ent_01/oradata/*
+!oracle/19c/ora_db_19c_ent_01/oradata/.gitkeep
 
-oracle/26ai/oracle_db_26ai_ent_01/oradata/*
-!oracle/26ai/oracle_db_26ai_ent_01/oradata/.gitkeep
-
-oracle/26ai/oracle_db_26ai_free_01/oradata/*
-!oracle/26ai/oracle_db_26ai_free_01/oradata/.gitkeep
+oracle/26ai/ora_db_26ai_free_01/oradata/*
+!oracle/26ai/ora_db_26ai_free_01/oradata/.gitkeep
