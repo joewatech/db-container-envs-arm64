@@ -1,4 +1,5 @@
--- Script to open up the ORACLE_SAMPLE_PDB PDB in case it is in a 'closed' state.
+-- Script to open up the any user created PDB in case it is in a 'closed' state upon startup of
+-- the Oracle DB container.
 
 ALTER SESSION SET CONTAINER=cdb$root;
 
