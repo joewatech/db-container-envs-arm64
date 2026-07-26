@@ -4,8 +4,8 @@ services:
     container_name: ora_db_19c_ent_01
     restart: unless-stopped
     ports:
-      - ${ORACLE_PDB_LOCAL_PORT}:1521       # Listener / TNS
-      - ${ORACLE_PDB_LOCAL_OEM_PORT}:5500   # EM Express (HTTPS)
+      - ${ORACLE_PDB_LOCAL_PORT}:1521       # Listener / TNS / SQL*Net
+      - ${ORACLE_PDB_LOCAL_OEM_PORT}:5500   # EM Express / APEX (HTTPS)
     environment:
       ORACLE_SID: ${ORACLE_SID}
       ORACLE_PDB: ${ORACLE_PDB}

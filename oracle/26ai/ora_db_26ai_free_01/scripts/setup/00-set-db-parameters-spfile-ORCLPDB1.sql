@@ -2,9 +2,9 @@
 -- This script was created by combining code from code examples in the
 -- following two articles.  The 'markusdba.net' article is the one that really helped
 -- to get this script to work properly to set new database parameters/settings
--- in the 'pdb$seed' and default 'ORCLPDB1' PDB during the container startup.
+-- in the 'pdb$seed' and default '26AIPDB1' PDB during the container startup.
 --
--- This script is setup to update the 'PDB$SEED' and 'ORCLPDB1' PDBs.
+-- This script is setup to update the 'PDB$SEED' and 'FREEPDB1' PDBs.
 --
 -- https://www.markusdba.net/2016/10/23/switching-a-multitenant-database-to-extended-data-types/
 -- https://oracle-base.com/articles/12c/extended-data-types-12cR1#enabling-extended-data-types-pdb
@@ -80,28 +80,28 @@ SHOW PARAMETER string_size;
 SHOW PARAMETER NLS_NCHAR_CONV_EXCP;
 
 -------------------
--- Updating the ORCLPDB1 PDB to take on the updated properties from the 'spfile'
+-- Updating the FREEPDB1 PDB to take on the updated properties from the 'spfile'
 -------------------
 
-SELECT 'Updating ORCLPDB1 to new spfile parameters...' AS STARTUP_OUTPUT_TEXT FROM dual;
+SELECT 'Updating FREEPDB1 to new spfile parameters...' AS STARTUP_OUTPUT_TEXT FROM dual;
 
 ALTER SESSION SET CONTAINER=cdb$root;
 
-ALTER PLUGGABLE DATABASE ORCLPDB1 OPEN UPGRADE;
+ALTER PLUGGABLE DATABASE FREEPDB1 OPEN UPGRADE;
 
-ALTER SESSION SET CONTAINER=ORCLPDB1;
+ALTER SESSION SET CONTAINER=FREEPDB1;
 
 ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
 
 START $ORACLE_HOME/rdbms/admin/utl32k.sql;
 
-ALTER PLUGGABLE DATABASE ORCLPDB1 CLOSE;
+ALTER PLUGGABLE DATABASE FREEPDB1 CLOSE;
 
-ALTER PLUGGABLE DATABASE ORCLPDB1 OPEN;
+ALTER PLUGGABLE DATABASE FREEPDB1 OPEN;
 
-SELECT 'Show ORCLPDB1 with updated parameters...' AS STARTUP_OUTPUT_TEXT FROM dual;
+SELECT 'Show FREEPDB1 with updated parameters...' AS STARTUP_OUTPUT_TEXT FROM dual;
 
-ALTER SESSION SET CONTAINER=ORCLPDB1;
+ALTER SESSION SET CONTAINER=FREEPDB1;
 
 SHOW PARAMETER string_size;
 
