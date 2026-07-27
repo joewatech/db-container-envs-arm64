@@ -22,8 +22,8 @@ ALTER PLUGGABLE DATABASE DEFAULT TABLESPACE DATA;
 
 -- Create 'ORACLE_SAMPLE' user/schema.
 -- NOTE: copy this file to '02-create-oracle-sample-pdb.sql' (gitignored) and
--- replace CHANGE_ME_PASSWORD below with a real password before starting the container.
-CREATE USER ORACLE_SAMPLE IDENTIFIED BY "CHANGE_ME_PASSWORD" PROFILE
+-- replace <CHANGE_ME_PASSWORD> below with a real password before starting the container.
+CREATE USER ORACLE_SAMPLE IDENTIFIED BY "<CHANGE_ME_PASSWORD>" PROFILE
 DEFAULT ACCOUNT UNLOCK;
 
 -- Assign 'ORACLE_SAMPLE' user/schema to default to the DATA and TEMP tablespaces in the PDB.
