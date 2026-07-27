@@ -1,0 +1,41 @@
+-- Create 'ORACLE_SAMPLE_PDB' PDB using the default 'ORCLPDB1' PDB that
+-- the container creates as a template.
+--
+-- sql ORACLE_SAMPLE/<password>@localhost:1521/ORACLE_SAMPLE_PDB
+--
+CREATE PLUGGABLE DATABASE ORACLE_SAMPLE_PDB
+FROM ORCLPDB1
+STORAGE UNLIMITED
+FILE_NAME_CONVERT=('ORCLPDB1', 'ORACLE_SAMPLE_PDB')
+TEMPFILE REUSE;
+
+ALTER PLUGGABLE DATABASE ORACLE_SAMPLE_PDB OPEN READ WRITE;
+
+-- Persist this PDB's open state so it comes back up READ WRITE automatically on future restarts.
+ALTER PLUGGABLE DATABASE ORACLE_SAMPLE_PDB SAVE STATE;
+
+-- Change session to Pluggable DataBase (PDB).
+ALTER SESSION SET container = ORACLE_SAMPLE_PDB;
+
+-- Set the PDB's default tablespace (must be done from within the PDB's own session).
+ALTER PLUGGABLE DATABASE DEFAULT TABLESPACE DATA;
+
+-- Create 'ORACLE_SAMPLE' user/schema.
+-- NOTE: copy this file to '02-create-oracle-sample-pdb.sql' (gitignored) and
+-- replace <CHANGE_ME_PASSWORD> below with a real password before starting the container.
+CREATE USER ORACLE_SAMPLE IDENTIFIED BY "<CHANGE_ME_PASSWORD>" PROFILE
+DEFAULT ACCOUNT UNLOCK;
+
+-- Assign 'ORACLE_SAMPLE' user/schema to default to the DATA and TEMP tablespaces in the PDB.
+ALTER USER ORACLE_SAMPLE DEFAULT TABLESPACE DATA QUOTA UNLIMITED ON DATA;
+
+ALTER USER ORACLE_SAMPLE TEMPORARY TABLESPACE TEMP;
+
+-- Grant priveleges to 'ORACLE_SAMPLE' user/schema.
+GRANT CONNECT TO ORACLE_SAMPLE;
+GRANT RESOURCE TO ORACLE_SAMPLE;
+GRANT CREATE ANY VIEW TO ORACLE_SAMPLE;
+
+GRANT ALL PRIVILEGES to ORACLE_SAMPLE;
+
+GRANT SELECT ON SYS.DBA_RECYCLEBIN TO ORACLE_SAMPLE;
