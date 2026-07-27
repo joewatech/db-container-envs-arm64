@@ -6,6 +6,11 @@
 **/.env.*
 !**/.env.example
 
+# Oracle sample-user setup scripts contain a real password; only the
+# .example template (with a placeholder password) is committed.
+**/scripts/setup/02-create-oracle-sample-pdb.sql
+!**/scripts/setup/02-create-oracle-sample-pdb.sql.example
+
 .DS_Store
 **/.DS_Store
 
