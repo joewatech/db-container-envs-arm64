@@ -13,6 +13,11 @@
 WHENEVER SQLERROR EXIT FAILURE;
 WHENEVER OSERROR EXIT FAILURE;
 
+-- Tell the container healthcheck (checkDBLockStatus.sh) to skip itself while we
+-- bounce the instance below, otherwise a healthcheck poll landing in the window
+-- where pmon is briefly down can release the exist_lck lock permanently.
+HOST touch "$ORACLE_BASE/oradata/.${ORACLE_SID}.nochk"
+
 -------------------
 -- Updating database instance parameters/settings in the spfile.
 -------------------
