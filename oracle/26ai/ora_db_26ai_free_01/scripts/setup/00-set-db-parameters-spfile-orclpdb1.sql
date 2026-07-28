@@ -118,3 +118,7 @@ ALTER SESSION SET CONTAINER=cdb$root;
 SHOW PDBS;
 
 SELECT 'End of the ''00-set-db-parameters-spfile-PDBs.sql'' script' AS STARTUP_OUTPUT_TEXT FROM dual;
+
+-- All bounces are done and every statement above succeeded (WHENEVER EXIT FAILURE
+-- would have aborted otherwise), so it's safe to let the healthcheck resume.
+HOST rm -f "$ORACLE_BASE/oradata/.${ORACLE_SID}.nochk"
