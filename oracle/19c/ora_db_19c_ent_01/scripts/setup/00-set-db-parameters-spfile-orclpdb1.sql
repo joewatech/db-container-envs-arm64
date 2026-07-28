@@ -13,6 +13,11 @@
 WHENEVER SQLERROR EXIT FAILURE;
 WHENEVER OSERROR EXIT FAILURE;
 
+-- Tell the container healthcheck (checkDBLockStatus.sh) to skip itself while we
+-- bounce the instance below, otherwise a healthcheck poll landing in the window
+-- where pmon is briefly down can release the exist_lck lock permanently.
+HOST touch "$ORACLE_BASE/oradata/.${ORACLE_SID}.nochk"
+
 -------------------
 -- Updating database instance parameters/settings in the spfile.
 -------------------
@@ -118,3 +123,7 @@ ALTER SESSION SET CONTAINER=cdb$root;
 SHOW PDBS;
 
 SELECT 'End of the ''00-set-db-parameters-spfile-PDBs.sql'' script' AS STARTUP_OUTPUT_TEXT FROM dual;
+
+-- All bounces are done and every statement above succeeded (WHENEVER EXIT FAILURE
+-- would have aborted otherwise), so it's safe to let the healthcheck resume.
+HOST rm -f "$ORACLE_BASE/oradata/.${ORACLE_SID}.nochk"
